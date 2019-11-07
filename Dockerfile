@@ -20,7 +20,7 @@ RUN mkdir /var/www && \
 	chown -R tomcat /var/www/domain && \
 	mkdir /var/bimserver && \
 	mkdir /var/bimserver/home && \
-	chown -R tomcat /var/bimserver
+	mkdir /var/bimserver/home/emailtemplates
 
 # Install Tomcat8
 RUN cd /opt && \
@@ -38,6 +38,9 @@ COPY server.xml /opt/tomcat/conf/server.xml
 # Install BIMserver
 RUN cd /var/www/domain && \
 	wget https://github.com/opensourceBIM/BIMserver/releases/download/v1.5.162/bimserverwar-1.5.162.war -O ROOT.war
+# Copy email templates
+COPY emailtemplates /var/bimserver/home/emailtemplates/
+RUN chown -R tomcat /var/bimserver
 
 # Add roles
 ADD ./run.sh /opt/run.sh
