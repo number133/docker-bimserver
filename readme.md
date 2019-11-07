@@ -14,6 +14,21 @@ $ docker run -d \
 	abylay/docker-bimserver
 ```
 
+For remote debugging run:
+```bash
+$ docker run -d \
+	--name=bimserver \
+	-e TOMCAT_USER=admin \
+	-e TOMCAT_PASSWORD=admin \
+	-e XMX=1G \
+	-e debug \
+	-p 8080:8080 \
+	-p 1043:1043 \
+	--mount source=bimserver-vol,destination=/var/bimserver/home \
+	--restart=always \
+	abylay/docker-bimserver
+```
+
 Take a look at tags for available versions.
 
 This will pull the 'latest' tagged image. For other tags please see Tags on Dockerhub. To use a specific tag, put `:TAGNAME` after the docker image at the end of the run command.

@@ -27,4 +27,8 @@ EOF
 
 export JAVA_OPTS="-Djava.awt.headless=true -Xmx$XMX"
 
+if [[ -z "$debug" ]]; then
+	export CATALINA_OPTS="-agentlib:jdwp=transport=dt_socket,address=1043,server=y,suspend=n"
+fi
+
 /opt/tomcat/bin/catalina.sh run

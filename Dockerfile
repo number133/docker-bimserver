@@ -45,5 +45,5 @@ ADD ./run.sh /opt/run.sh
 ##################### INSTALLATION END #####################
 
 USER tomcat
-EXPOSE 8080
+EXPOSE 8080 1043
 ENTRYPOINT ["bash", "/opt/run.sh"]
