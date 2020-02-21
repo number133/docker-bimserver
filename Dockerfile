@@ -36,8 +36,10 @@ COPY default.policy /opt/tomcat/conf/policy.d/default.policy
 COPY server.xml /opt/tomcat/conf/server.xml
 
 # Install BIMserver
-RUN cd /var/www/domain && \
-	wget https://github.com/opensourceBIM/BIMserver/releases/download/v1.5.162/bimserverwar-1.5.162.war -O ROOT.war
+COPY artefacts/xaa /var/www/domain/xaa
+COPY artefacts/xab /var/www/domain/xab
+RUN cd /var/www/domain/ && \
+	cat x* > ROOT.war
 # Copy email templates
 COPY emailtemplates /var/bimserver/home/emailtemplates/
 RUN chown -R tomcat /var/bimserver
